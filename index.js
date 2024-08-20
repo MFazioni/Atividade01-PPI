@@ -21,6 +21,11 @@ app.use(session({
     }
 }));
 
+app.get('/detalhesrock', (requisicao, resposta) => {
+    resposta.sendFile(__dirname + '/publico/privado/detalhesrock.html');
+});
+
+
 app.use(express.static('./publico'));
 
 app.get('/login',(requisicao, resposta) => {
