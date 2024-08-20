@@ -2,7 +2,7 @@
   "name": "atividade01-ppi",
   "version": "1.0.0",
   "description": "Atividade 1 PPI",
-  "main": "script.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/MFazioni/Atividade01-PPI/issues"
   },
-  "homepage": "https://github.com/MFazioni/Atividade01-PPI#readme"
+  "homepage": "https://github.com/MFazioni/Atividade01-PPI#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
