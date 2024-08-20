@@ -9,11 +9,14 @@
 <body>
     <div class="caixalogin">
     <div class="login-container">
-        <h2>Login</h2>
-        <input type="text" placeholder="Usuário" id="username">
-        <input type="password" placeholder="Senha" id="password">
-        <button onclick="login()">Entrar</button>
+        <form method="post" action="/login">
+            <h3>Acesso ao Sistema</h3>
+            <input type="text" id="usuario" name="usuario" placeholder="usuário" required>
+            <input type="password" id="senha" name="senha" placeholder="senha" required>
+            <button type="submit">LOGIN</button>
+        </form>
     </div>
 </div>
+<script src="/script.js"></script>
 </body>
 </html>
