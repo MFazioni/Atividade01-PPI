@@ -7,6 +7,9 @@
     height: 100vh;
     margin: 0;
 }
+p, label{
+    padding-left: 10px;
+}
 
 
 .login-container {
@@ -100,7 +103,7 @@ h1 {
     border-radius: 5px;
 }
 
-.details-button {
+.botaodetalhe {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 15px;
@@ -110,7 +113,7 @@ h1 {
     border-radius: 5px;
 }
 
-.details-button:hover {
+.botaodetalhe:hover {
     background-color: #218838;
 }
 
