@@ -13,27 +13,62 @@ const app = express();
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-const evento = new Evento("Festival de Cinema","2024-11-09","Sesc",14.00,"Uma seleção de filmes nacionais.","18:00",80);
+//const evento = new Evento("Festival de Cinema","2024-11-09","Sesc",14.00,"Uma seleção de filmes nacionais.","18:00",80);
 
+//INCLUIR -------------------------------------------
 
 //evento.incluir().then(() =>{
-    console.log("Evento incluído com sucesso!");
+//    console.log("Evento incluído com sucesso!");
 //}).catch((erro) =>{
 //    console.log("Erro ao incluir o evento: " + erro);
 
 //})
 
 
+//CONSULTAR -------------------------------------------
 
-evento.consultar("Festival de Cinema").then((listaEventos)=>{
-    for (const evento of listaEventos){
-        console.log(evento.toString());
+//evento.consultar("Festival de Cinema")
+//    .then((listaEventos) => {
+//        if (listaEventos.length > 0) {
+//            for (const eventoItem of listaEventos) {
+//                console.log(eventoItem.toString());
+//            }
+//        } else {
+//            console.log("Nenhum evento encontrado.");
+//        }
+//    })
+//    .catch((erro) => {
+//        console.log("Erro ao consultar os eventos: " + erro);
+//    });
 
-    }
-}).catch((erro) =>{
-    console.log("Erro ao consultar os eventos: " + erro);
 
-});
+// ALTERAR -------------------------------------------
+
+//const evento = new Evento("Festival de Cinema", "2024-11-10", "Teatro Municipal", 20.00, "Nova descrição do evento", "19:00", 100);
+
+//evento.alterar(evento)
+//    .then(() => {
+//        console.log("Evento atualizado com sucesso!");
+//    })
+//    .catch((erro) => {
+//        console.log("Erro ao atualizar o evento: " + erro);
+//    });
+
+
+// EXCLUIR --------------------------------------
+
+const evento = new Evento("Festival de Cinema", "2024-11-10", "Teatro Municipal", 20.00, "Nova descrição do evento", "19:00", 100);
+
+evento.excluir(evento)
+    .then(() => {
+        console.log("Evento excluído com sucesso!");
+    })
+    .catch((erro) => {
+        console.log("Erro ao excluir o evento: " + erro);
+    });
+
+
+
 
 
 
