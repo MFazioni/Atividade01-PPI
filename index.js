@@ -13,21 +13,26 @@ const app = express();
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-//const evento = new Evento("Festival de Cinema","2024-11-09","Sesc",14.00,"Uma seleção de filmes nacionais.","18:00",80);
+// INCLUIR -------------------------------------------
 
-//INCLUIR -------------------------------------------
 
-//evento.incluir().then(() =>{
+// const evento = new Evento("Peça de Teatro","2024-08-20","Teatro Cesar Cava",35.00,"Peça teatral sobre os Retirantes","19:00",200);
+
+
+
+// evento.incluir().then(() =>{
 //    console.log("Evento incluído com sucesso!");
-//}).catch((erro) =>{
+// }).catch((erro) =>{
 //    console.log("Erro ao incluir o evento: " + erro);
 
-//})
+// })
 
 
-//CONSULTAR -------------------------------------------
+// CONSULTAR -------------------------------------------
 
-//evento.consultar("Festival de Cinema")
+// const evento = new Evento("Festival de Cinema", "2024-11-10", "Teatro Municipal", 20.00, "Nova descrição do evento", "19:00", 100);
+
+// evento.consultar("Festival de Cinema")
 //    .then((listaEventos) => {
 //        if (listaEventos.length > 0) {
 //            for (const eventoItem of listaEventos) {
@@ -44,9 +49,9 @@ const app = express();
 
 // ALTERAR -------------------------------------------
 
-//const evento = new Evento("Festival de Cinema", "2024-11-10", "Teatro Municipal", 20.00, "Nova descrição do evento", "19:00", 100);
+// const evento = new Evento("Festival de Cinema", "2024-11-05", "Teatro Cesar Cava", 20.00, "Filmes de época.", "19:00", 200);
 
-//evento.alterar(evento)
+// evento.alterar(evento)
 //    .then(() => {
 //        console.log("Evento atualizado com sucesso!");
 //    })
@@ -57,15 +62,15 @@ const app = express();
 
 // EXCLUIR --------------------------------------
 
-const evento = new Evento("Festival de Cinema", "2024-11-10", "Teatro Municipal", 20.00, "Nova descrição do evento", "19:00", 100);
+// const evento = new Evento("Peça de Teatro","2024-08-20","Teatro Cesar Cava",35.00,"Peça teatral sobre os Retirantes","19:00",200);
 
-evento.excluir(evento)
-    .then(() => {
-        console.log("Evento excluído com sucesso!");
-    })
-    .catch((erro) => {
-        console.log("Erro ao excluir o evento: " + erro);
-    });
+// evento.excluir(evento)
+//    .then(() => {
+//        console.log("Evento excluído com sucesso!");
+//    })
+//    .catch((erro) => {
+//        console.log("Erro ao excluir o evento: " + erro);
+//    });
 
 
 
