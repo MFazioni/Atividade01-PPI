@@ -91,6 +91,21 @@ Ingressos: ${this.#ingressos}
         `
     }
 
+toJSON(){
+    return {
+        nome: this.#nome,
+        data: this.#data,
+        local: this.#local,
+        preco: this.#preco,
+        descricao: this.#descricao,
+        horario: this.#horario,
+        ingressos: this.#ingressos
+    }
+
+}
+
+
+
     async incluir(){
         const eventDAO = new EventoDAO();
         await eventDAO.gravar(this);

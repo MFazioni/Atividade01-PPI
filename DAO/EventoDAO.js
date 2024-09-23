@@ -89,7 +89,7 @@ export default class EventoDAO{
             parametros.push(termoBusca);
         }
         else{
-            sql = `SELECT * FROM evento order by nome;`;
+            sql = `SELECT * FROM evento order by descricao;`;
         }
 
         const conexao = await conectar();
