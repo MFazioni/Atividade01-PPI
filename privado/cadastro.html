@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="./css/estilo.css" />
+    <meta charset="utf-8">
+    <title>Cadastro de Eventos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Eventos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Sair</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cadastro.html">Cadastrar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="card" style="width: 600px;">
+            <div class="card-body">
+                <h3 class="card-title">Cadastro de Evento</h3>
+                <form id="formEvento" method="post" action="http://localhost:3000/eventos" novalidate>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" id="nome" name="nome" class="form-control" placeholder="NOME" required>
+                        <div class="invalid-feedback">
+                            O nome é obrigatório.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data</label>
+                        <input type="text" id="data" name="data" class="form-control" placeholder="DATA" required>
+                        <div class="invalid-feedback">
+                            A data é obrigatória.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="local" class="form-label">Local</label>
+                        <input type="text" id="local" name="local" class="form-control" placeholder="LOCAL" required>
+                        <div class="invalid-feedback">
+                            O local é obrigatório.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="preco" class="form-label">Preço</label>
+                        <input type="number" id="preco" name="preco" class="form-control" placeholder="PREÇO" required>
+                        <div class="invalid-feedback">
+                            O preço é obrigatório e deve ser um número.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input type="text" id="descricao" name="descricao" class="form-control" placeholder="DESCRIÇÃO" required>
+                        <div class="invalid-feedback">
+                            A descrição é obrigatória.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="horario" class="form-label">Horário</label>
+                        <input type="text" id="horario" name="horario" class="form-control" placeholder="HORARIO" required>
+                        <div class="invalid-feedback">
+                            O horário é obrigatório.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ingressos" class="form-label">Ingressos</label>
+                        <input type="number" id="ingressos" name="ingressos" class="form-control" placeholder="INGRESSOS" required min="1">
+                        <div class="invalid-feedback">
+                            A quantidade de ingressos deve ser no mínimo 1.
+                        </div>
+                    </div>
+                    <button id="botaoConfirmacao" type="submit" class="btn btn-primary">CADASTRAR</button>
+                    <button type="button" class="btn btn-secondary">CANCELAR</button>
+                </form>
+                <div id="mensagem" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="containerTabela"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="./js/evento.js"></script>
+    <script>
+        
+        async function carregarEventos() {
+            const resposta = await fetch('http://localhost:3000/eventos');
+            const dados = await resposta.json();
+
+            const containerTabela = document.getElementById('containerTabela');
+            containerTabela.innerHTML = ''; 
+
+            if (dados.status) {
+                const tabela = document.createElement('table');
+                tabela.className = 'table table-striped mt-4';
+                tabela.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Local</th>
+                            <th>Preço</th>
+                            <th>Descrição</th>
+                            <th>Horário</th>
+                            <th>Ingressos</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                `;
+                
+                const corpoTabela = tabela.querySelector('tbody');
+
+                dados.listaEventos.forEach(evento => {
+                    const linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td>${evento.nome}</td>
+                        <td>${evento.data ? new Date(evento.data).toLocaleDateString('pt-BR') : 'Não definida'}</td>
+                        <td>${evento.local}</td>
+                        <td>${evento.preco}</td>
+                        <td>${evento.descricao}</td>
+                        <td>${evento.horario}</td>
+                        <td>${evento.ingressos}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" onclick="editarEvento('${evento.nome}', '${evento.data}', '${evento.local}', '${evento.preco}', '${evento.descricao}', '${evento.horario}', '${evento.ingressos}')">Alterar</button>
+                            <button class="btn btn-danger btn-sm" onclick="excluirEvento('${evento.nome}')">Excluir</button>
+                        </td>
+                    `;
+                    corpoTabela.appendChild(linha);
+                });
+
+                containerTabela.appendChild(tabela);
+            } else {
+                containerTabela.innerHTML = '<p>Nenhum evento encontrado.</p>';
+            }
+        }
+
+
+        window.onload = carregarEventos;
+
+
+        document.getElementById('formEvento').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const dadosEvento = {};
+
+            // Converte FormData para um objeto
+            formData.forEach((value, key) => {
+                dadosEvento[key] = value;
+            });
+
+            try {
+                const resposta = await fetch('http://localhost:3000/eventos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dadosEvento),
+                });
+
+                const resultado = await resposta.json();
+
+                if (resultado.status) {
+                    document.getElementById('mensagem').textContent = 'Evento cadastrado com sucesso!';
+                    carregarEventos(); 
+                } else {
+                    document.getElementById('mensagem').textContent = 'Erro ao cadastrar evento: ' + resultado.mensagem;
+                }
+            } catch (erro) {
+                document.getElementById('mensagem').textContent = 'Erro ao cadastrar evento: ' + erro.message;
+            }
+        });
+
+
+        function editarEvento(nome, data, local, preco, descricao, horario, ingressos) {
+            document.getElementById('nome').value = nome;
+            document.getElementById('data').value = data;
+            document.getElementById('local').value = local;
+            document.getElementById('preco').value = preco;
+            document.getElementById('descricao').value = descricao;
+            document.getElementById('horario').value = horario;
+            document.getElementById('ingressos').value = ingressos;
+            document.getElementById('botaoConfirmacao').innerText = 'ATUALIZAR';
+        }
+
+
+        async function excluirEvento(nome) {
+            if (confirm(`Você tem certeza que deseja excluir o evento "${nome}"?`)) {
+                try {
+                    const resposta = await fetch(`http://localhost:3000/eventos/${nome}`, {
+                        method: 'DELETE',
+                    });
+
+                    const resultado = await resposta.json();
+
+                    if (resultado.status) {
+                        alert('Evento excluído com sucesso!');
+                        carregarEventos();
+                    } else {
+                        alert('Erro ao excluir evento: ' + resultado.mensagem);
+                    }
+                } catch (erro) {
+                    alert('Erro ao excluir evento: ' + erro.message);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

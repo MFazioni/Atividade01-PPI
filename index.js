@@ -69,14 +69,14 @@ app.listen(porta, host, () => {
 // INCLUIR -------------------------------------------
 
 
-// const evento = new Evento("Peça de Teatro","2024-08-20","Teatro Cesar Cava",35.00,"Peça teatral sobre os Retirantes","19:00",200);
+ //const evento = new Evento("Concerto de Rock","2024-08-25","Estádio Nacional",25.00,"Novas bandas de rock!","19:00",200);
 
 
 
 // evento.incluir().then(() =>{
-//    console.log("Evento incluído com sucesso!");
+ //   console.log("Evento incluído com sucesso!");
 // }).catch((erro) =>{
-//    console.log("Erro ao incluir o evento: " + erro);
+  //  console.log("Erro ao incluir o evento: " + erro);
 
 // })
 
