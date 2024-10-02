@@ -53,14 +53,14 @@ function selecionarEvento(id, nome, data, local, preco, descricao, horario, ingr
     const botaoConfirmacao = document.getElementById('botaoConfirmacao');
     botaoConfirmacao.innerHTML = motivoAcao === 'EDITAR' ? 'EDITAR' : 'EXCLUIR';
     
-    // Armazene o ID do evento para uso nas funções de atualizar e excluir
-    document.getElementById('eventoId').value = id; // Supondo que você tenha um input oculto para armazenar o ID
+
+    document.getElementById('eventoId').value = id; 
 }
 
 function excluirEvento(){
-    const idEvento = document.getElementById('eventoId').value; // Obtenha o ID do evento
+    const idEvento = document.getElementById('eventoId').value; 
 
-    fetch(`${enderecoAPI}/${idEvento}`, { // Supondo que sua API aceita o ID na URL
+    fetch(`${enderecoAPI}/${idEvento}`, { 
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ function excluirEvento(){
 
 function atualizarEvento(){
     const objetoEvento = {
-        id: document.getElementById('eventoId').value, // Inclua o ID no objeto
+        id: document.getElementById('eventoId').value, 
         nome: document.getElementById('nome').value,
         data: document.getElementById('data').value,
         local: document.getElementById('local').value,
@@ -109,8 +109,8 @@ function buscarTodosEventos() {
             return resposta.json();
         })
         .then((respostaAPI) => {
-            console.log(respostaAPI); // Adicione este log
-            // Verifica se respostaAPI e listaEvento são válidos
+            console.log(respostaAPI); 
+
             if (respostaAPI.status === true && Array.isArray(respostaAPI.listaEvento)) {
                 exibirTabelaEvento(respostaAPI.listaEvento);
             } else {
@@ -127,10 +127,10 @@ function buscarTodosEventos() {
 
 
 function validarCampos(evento) {
-    evento.preventDefault(); // Impede o envio do formulário
+    evento.preventDefault(); 
 
     const form = document.getElementById('formEvento');
-    form.classList.add('was-validated'); // Adiciona a classe de validação
+    form.classList.add('was-validated');
 
     const nome = document.getElementById('nome');
     const data = document.getElementById('data');
